@@ -12,6 +12,9 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { auth } from "../firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props: any) {
   return (
@@ -34,12 +37,17 @@ function Copyright(props: any) {
 const theme = createTheme();
 
 const Login = () => {
+  const navigation = useNavigate();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
+    const email = data.get("email")?.toString();
+    const password = data.get("password")?.toString();
+    if (!email || !password) return;
+    signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+      const user = userCredential.user;
+      sessionStorage.setItem("uid", user.uid);
+      navigation("/");
     });
   };
   return (
