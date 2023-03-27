@@ -5,6 +5,7 @@ import Done from "./components/Done";
 import CreateTask from "./components/CreateTask";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
+import Signup from "./components/Signup";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/create" element={<CreateTask />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/logout" element={<Logout />}></Route>
+        <Route path="/signup" element={<Signup />}></Route>
       </Routes>
     </Router>
   );
