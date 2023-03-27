@@ -1,0 +1,29 @@
+.completePage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+.messageContainer {
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 200px;
+  width: 250px;
+  gap: 5px;
+  padding: 0px 40px;
+  box-shadow: 5px 9px 15px -5px #777777;
+}
+
+.message {
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+}
