@@ -71,7 +71,7 @@ const Signup = () => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            会員登録
+            ユーザー登録
           </Typography>
           <Box
             component="form"
