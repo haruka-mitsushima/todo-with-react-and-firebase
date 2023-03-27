@@ -1,0 +1,60 @@
+.createTaskPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+.taskContainer {
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 450px;
+  width: 500px;
+  gap: 15px;
+  padding: 0px 40px;
+  box-shadow: 5px 9px 15px -5px #777777;
+}
+
+.taskContainer h1 {
+  margin: 0;
+}
+
+.taskContainer input {
+  width: 100%;
+  height: 30px;
+  outline: none;
+  padding: 0px, 4px;
+}
+
+.taskContainer textarea {
+  width: 100%;
+  height: 50px;
+  outline: none;
+  padding: 7px;
+  font-family: unset;
+}
+
+.taskContainer select {
+  width: 100%;
+  height: 30px;
+  padding: 7px;
+}
+
+.taskButton {
+  padding: 10px 0;
+  background-color: #3d77a5;
+  border: none;
+  box-shadow: 5px 9px 15px -5px #777777;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.taskButton:hover {
+  transform: translateY(5px);
+  box-shadow: none;
+}
