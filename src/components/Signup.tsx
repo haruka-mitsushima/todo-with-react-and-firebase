@@ -33,82 +33,83 @@ const Signup = () => {
   };
   return (
     <div className="signupPage">
-      <div className="signupContainer">
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "#869dc0" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            ユーザー登録
-          </Typography>
-          <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          bgcolor: "white",
+          borderRadius: 10,
+          py: 0,
+          px: 4,
+          height: 450,
+          width: 500,
+          boxShadow: 10,
+        }}
+      >
+        <Avatar sx={{ m: 1, bgcolor: "#869dc0" }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          ユーザー登録
+        </Typography>
+        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                id="email"
+                label="メールアドレス"
+                name="email"
+                autoComplete="email"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                name="password"
+                label="パスワード"
+                type="password"
+                id="password"
+                autoComplete="new-password"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                id="username"
+                label="ユーザー名"
+                name="username"
+                autoComplete="username"
+              />
+            </Grid>
+          </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{
+              mt: 3,
+              mb: 2,
+              bgcolor: "#4970a3",
+              ":hover": { background: "#3b5a84" },
+            }}
           >
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="メールアドレス"
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="パスワード"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="username"
-                  label="ユーザー名"
-                  name="username"
-                  autoComplete="username"
-                />
-              </Grid>
+            登録する
+          </Button>
+          <Grid container justifyContent="flex-end">
+            <Grid item>
+              <Link href="/login" variant="body2">
+                ログインはこちら
+              </Link>
             </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{
-                mt: 3,
-                mb: 2,
-                bgcolor: "#4970a3",
-                ":hover": { background: "#3b5a84" },
-              }}
-            >
-              登録する
-            </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="/login" variant="body2">
-                  ログインはこちら
-                </Link>
-              </Grid>
-            </Grid>
-          </Box>
+          </Grid>
         </Box>
-      </div>
+      </Box>
     </div>
   );
 };

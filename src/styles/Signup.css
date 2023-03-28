@@ -4,16 +4,3 @@
   align-items: center;
   height: 90vh;
 }
-
-.signupContainer {
-  background-color: white;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 500px;
-  width: 500px;
-  gap: 15px;
-  padding: 0px 40px;
-  box-shadow: 5px 9px 15px -5px #777777;
-}

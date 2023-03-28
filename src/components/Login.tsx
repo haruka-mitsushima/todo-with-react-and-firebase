@@ -28,69 +28,70 @@ const Login = () => {
   };
   return (
     <div className="loginPage">
-      <div className="loginContainer">
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "#869dc0" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            ログイン
-          </Typography>
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          bgcolor: "white",
+          borderRadius: 10,
+          py: 0,
+          px: 4,
+          height: 450,
+          width: 500,
+          boxShadow: 10,
+        }}
+      >
+        <Avatar sx={{ m: 1, bgcolor: "#869dc0" }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          ログイン
+        </Typography>
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="メールアドレス"
+            name="email"
+            autoComplete="email"
+            autoFocus
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="パスワード"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{
+              mt: 3,
+              mb: 2,
+              bgcolor: "#4970a3",
+              ":hover": { background: "#3b5a84" },
+            }}
           >
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="メールアドレス"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="パスワード"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{
-                mt: 3,
-                mb: 2,
-                bgcolor: "#4970a3",
-                ":hover": { background: "#3b5a84" },
-              }}
-            >
-              ログインする
-            </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="/signup" variant="body2">
-                  {"会員登録はこちら"}
-                </Link>
-              </Grid>
+            ログインする
+          </Button>
+          <Grid container justifyContent="flex-end">
+            <Grid item>
+              <Link href="/signup" variant="body2">
+                {"会員登録はこちら"}
+              </Link>
             </Grid>
-          </Box>
+          </Grid>
         </Box>
-      </div>
+      </Box>
     </div>
   );
 };
