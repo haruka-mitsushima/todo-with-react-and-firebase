@@ -15,7 +15,7 @@ const Navbar = () => {
       navigation("/");
     });
   };
-  const uid = sessionStorage.getItem("uid");
+  const isAuth = sessionStorage.getItem("isAuth");
   return (
     <nav>
       <Link to="/">
@@ -23,7 +23,7 @@ const Navbar = () => {
         ホーム
       </Link>
 
-      {!uid ? (
+      {!isAuth ? (
         <Link to="/login">
           <LoginIcon />
           ログイン
