@@ -23,13 +23,9 @@ const Signup = () => {
 
     if (!email || !password) return;
 
-    createUserWithEmailAndPassword(auth, email, password).then(
-      (userCredential) => {
-        const user = userCredential.user;
-        sessionStorage.setItem("uid", user.uid);
-        navigate("/complete");
-      }
-    );
+    createUserWithEmailAndPassword(auth, email, password).then(() => {
+      navigate("/complete");
+    });
   };
   return (
     <div className="signupPage">

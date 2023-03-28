@@ -21,8 +21,7 @@ const Login = () => {
     const password = data.get("password")?.toString();
     if (!email || !password) return;
     signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
-      const user = userCredential.user;
-      sessionStorage.setItem("uid", user.uid);
+      sessionStorage.setItem("isAuth", "true");
       navigation("/");
     });
   };

@@ -59,17 +59,16 @@ const CreateTask = () => {
     const data = new FormData(event.currentTarget);
     const task = data.get("task")?.toString();
     const detail = data.get("detail")?.toString();
-    const tags = data.get("tag")?.toString().split(",");
-    // await addDoc(collection(db, "tasks"), {
-    //   title,
-    //   tasksText: taskText,
-    //   author: {
-    //     userName: auth.currentUser.displayName,
-    //     id: auth.currentUser.uid,
-    //   },
-    // });
+    let tags = data.get("tag")?.toString().split(",");
+    if (!tags || tags[0] === "") tags = [];
+    await addDoc(collection(db, "tasks"), {
+      task,
+      detail,
+      tags,
+      userId: auth.currentUser?.uid,
+    });
     console.log({ task, detail, tags });
-    // navigate("/");
+    navigate("/");
   };
 
   useEffect(() => {
