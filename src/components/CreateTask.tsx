@@ -15,6 +15,8 @@ import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
 import Chip from "@mui/material/Chip";
 import { Theme, useTheme } from "@mui/material/styles";
+import { useSelector } from "react-redux";
+import { State } from "../type";
 
 const tags = ["仕事", "家事", "緊急"];
 const ITEM_HEIGHT = 48;
@@ -39,7 +41,7 @@ function getStyles(name: string, personName: readonly string[], theme: Theme) {
 
 const CreateTask = () => {
   const theme = useTheme();
-  const isAuth = sessionStorage.getItem("uid");
+  const isAuth = useSelector((state: State) => state.auth);
   const [tagName, setTagName] = useState<string[]>([]);
 
   const navigate = useNavigate();
@@ -68,7 +70,7 @@ const CreateTask = () => {
       userId: auth.currentUser?.uid,
     });
     console.log({ task, detail, tags });
-    navigate("/home");
+    navigate("/");
   };
 
   useEffect(() => {

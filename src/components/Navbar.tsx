@@ -12,21 +12,21 @@ import { logoutAction } from "../features/auth/AuthSlice";
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const navigation = useNavigate();
+  const navigate = useNavigate();
+
+  const { isAuth } = useSelector((state: State) => state.auth);
 
   const logout = () => {
     signOut(auth).then(() => {
       sessionStorage.clear();
-      dispatch(logoutAction);
-      navigation("/");
+      dispatch(logoutAction());
+      navigate("/");
     });
   };
 
-  const { isAuth } = useSelector((state: State) => state.auth);
-
   return (
     <nav>
-      <Link to="/home">
+      <Link to="/">
         <AssignmentIcon />
         ホーム
       </Link>
