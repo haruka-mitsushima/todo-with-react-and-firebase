@@ -17,8 +17,7 @@ function App() {
       <Provider store={store}>
         <Navbar />
         <Routes>
-          <Route path="/home" element={<Home />}></Route>
-          <Route path="/" element={<NotLogin />}></Route>
+          <Route path="/" element={<Home />}></Route>
           <Route path="/done" element={<Done />}></Route>
           <Route path="/create" element={<CreateTask />}></Route>
           <Route path="/login" element={<Login />}></Route>
