@@ -32,7 +32,7 @@ const Navbar = () => {
         <>
           <Link to="/create">
             <DriveFileRenameOutlineIcon />
-            記事投稿
+            タスク追加
           </Link>
           <Link to="#" onClick={() => logout()}>
             <LoginIcon />
