@@ -11,20 +11,26 @@ import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "../styles/Login.css";
+import { useDispatch } from "react-redux";
+import { login } from "../features/auth/AuthSlice";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const navigation = useNavigate();
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get("email")?.toString();
     const password = data.get("password")?.toString();
     if (!email || !password) return;
-    signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+    signInWithEmailAndPassword(auth, email, password).then(() => {
       sessionStorage.setItem("isAuth", "true");
+      dispatch(login());
       navigation("/");
     });
   };
+
   return (
     <div className="loginPage">
       <Box
