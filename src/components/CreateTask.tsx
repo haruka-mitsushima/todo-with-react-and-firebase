@@ -68,7 +68,7 @@ const CreateTask = () => {
       userId: auth.currentUser?.uid,
     });
     console.log({ task, detail, tags });
-    navigate("/");
+    navigate("/home");
   };
 
   useEffect(() => {
