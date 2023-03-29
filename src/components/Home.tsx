@@ -7,7 +7,7 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import { setTasks } from "../features/task/TaskSlice";
 import TaskBox from "./TaskBox";
-import Notasks from "./Notasks";
+import NoTasks from "./NoTasks";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -41,11 +41,15 @@ const Home = () => {
   return (
     <div className="home">
       {!isAuth ? (
-        <NotLogin />
+        <div className="no">
+          <NotLogin />
+        </div>
       ) : !taskFlg ? (
-        <Notasks />
+        <div className="no">
+          <NoTasks />
+        </div>
       ) : (
-        <div>
+        <div className="taskBox">
           {tasks.map((task) => (
             <TaskBox task={task} key={task.id} />
           ))}
