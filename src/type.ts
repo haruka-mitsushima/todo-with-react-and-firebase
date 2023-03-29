@@ -1,4 +1,4 @@
-export type State = { auth: { isAuth: boolean }, task: { tasks: [] } }
+export type State = { auth: { isAuth: boolean }, task: { tasks: Tasks } }
 
 export type Tasks = Array<Task>
 
@@ -7,5 +7,7 @@ export type Task = {
   task: string
   detail: string
   userId: string
+  done: boolean
+  deleted: boolean
   tags: string[]
 }

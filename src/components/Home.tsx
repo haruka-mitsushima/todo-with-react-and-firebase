@@ -4,13 +4,15 @@ import { State } from "../type";
 import NotLogin from "./NotLogin";
 import "../styles/Home.css";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { auth, db } from "../firebase";
+import { db } from "../firebase";
 import { getAll } from "../features/task/TaskSlice";
-import Task from "./Task";
+import TaskBox from "./TaskBox";
+import Notasks from "./Notasks";
 
 const Home = () => {
   const dispatch = useDispatch();
   const { isAuth } = useSelector((state: State) => state.auth);
+
   const getTasks = async () => {
     const q = query(
       collection(db, "tasks"),
@@ -30,10 +32,12 @@ const Home = () => {
     <div className="home">
       {!isAuth ? (
         <NotLogin />
+      ) : !tasks.length ? (
+        <Notasks />
       ) : (
         <div>
           {tasks.map((task) => (
-            <Task />
+            <TaskBox task={task} key={task.id} />
           ))}
         </div>
       )}

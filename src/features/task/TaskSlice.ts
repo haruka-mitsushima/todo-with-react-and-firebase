@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { Tasks } from "../../type";
 
-const initialState = { tasks: [] }
+const initialState: { tasks: Tasks } = { tasks: [] }
 
 const taskSlice = createSlice({
   name: "task",
