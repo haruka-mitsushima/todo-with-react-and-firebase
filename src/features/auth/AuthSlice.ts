@@ -8,7 +8,6 @@ if (sessionStorage.getItem("isAuth") === null) {
   initialState = { isAuth: true }
 }
 
-
 const authSlice = createSlice({
   name: "auth",
   initialState,
