@@ -9,7 +9,6 @@ import Complete from "./components/Complete";
 import Navbar from "./components/Navbar";
 import { Provider } from "react-redux";
 import { store } from "./store";
-import NotLogin from "./components/NotLogin";
 
 function App() {
   return (
