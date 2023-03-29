@@ -67,6 +67,8 @@ const CreateTask = () => {
       task,
       detail,
       tags,
+      done: false,
+      deleted: false,
       userId: auth.currentUser?.uid,
     });
     console.log({ task, detail, tags });

@@ -1,0 +1,13 @@
+.taskContainer {
+  width: 600px;
+  height: auto;
+  max-height: 600px;
+  background-color: white;
+  box-shadow: 5px 9px 15px -5px #777777;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: start;
+  text-align: center;
+}
