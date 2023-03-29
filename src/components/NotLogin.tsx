@@ -2,7 +2,6 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import "../styles/Home.css";
 import FactCheckIcon from "@mui/icons-material/FactCheck";
 import Avatar from "@mui/material/Avatar";
 
