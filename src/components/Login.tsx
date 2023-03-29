@@ -26,6 +26,9 @@ const Login = () => {
     if (!email || !password) return;
     signInWithEmailAndPassword(auth, email, password).then(() => {
       sessionStorage.setItem("isAuth", "true");
+      if (auth.currentUser?.uid.toString()) {
+        sessionStorage.setItem("uid", auth.currentUser?.uid);
+      }
       dispatch(login());
       navigation("/");
     });
