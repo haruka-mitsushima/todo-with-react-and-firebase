@@ -5,7 +5,7 @@ import NotLogin from "./NotLogin";
 import "../styles/Home.css";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
-import { getAll } from "../features/task/TaskSlice";
+import { setTasks } from "../features/task/TaskSlice";
 import TaskBox from "./TaskBox";
 import Notasks from "./Notasks";
 
@@ -16,23 +16,33 @@ const Home = () => {
   const getTasks = async () => {
     const q = query(
       collection(db, "tasks"),
-      where("userId", "==", sessionStorage.getItem("uid"))
+      where("userId", "==", sessionStorage.getItem("uid")),
+      where("deleted", "==", false)
     );
     const data = await getDocs(q);
     console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     const tasks = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-    dispatch(getAll(tasks));
+    dispatch(setTasks(tasks));
   };
+  const tasks = useSelector((state: State) => state.task).tasks;
+
   useEffect(() => {
     getTasks();
   }, []);
 
-  const tasks = useSelector((state: State) => state.task).tasks;
+  let taskFlg = true;
+
+  if (!tasks.length) {
+    taskFlg = false;
+  }
+
+  console.log(tasks.length);
+  console.log(taskFlg);
   return (
     <div className="home">
       {!isAuth ? (
         <NotLogin />
-      ) : !tasks.length ? (
+      ) : !taskFlg ? (
         <Notasks />
       ) : (
         <div>

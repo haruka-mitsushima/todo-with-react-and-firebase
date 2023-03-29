@@ -30,7 +30,7 @@ const Notasks = () => {
       </Typography>
       <Button
         variant="contained"
-        href="/login"
+        href="/create"
         sx={{
           mt: 3,
           mb: 2,
