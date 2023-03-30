@@ -30,7 +30,6 @@ const TaskBox = ({ task }: { task: Task }) => {
       where("deleted", "==", false)
     );
     const data = await getDocs(q);
-    console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     const tasks = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
     dispatch(setTasks(tasks));
   };

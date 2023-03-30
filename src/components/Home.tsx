@@ -20,7 +20,6 @@ const Home = () => {
       where("deleted", "==", false)
     );
     const data = await getDocs(q);
-    console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     const tasks = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
     dispatch(setTasks(tasks));
   };
@@ -36,8 +35,6 @@ const Home = () => {
     taskFlg = false;
   }
 
-  console.log(tasks.length);
-  console.log(taskFlg);
   return (
     <div className="home">
       {!isAuth ? (
