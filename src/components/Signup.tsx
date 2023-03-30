@@ -20,8 +20,9 @@ const Signup = () => {
     const data = new FormData(event.currentTarget);
     const email = data.get("email")?.toString();
     const password = data.get("password")?.toString();
+    const username = data.get("username")?.toString();
 
-    if (!email || !password) return;
+    if (!email || !password || !username) return;
 
     createUserWithEmailAndPassword(auth, email, password).then(() => {
       navigate("/complete");

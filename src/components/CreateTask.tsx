@@ -61,6 +61,7 @@ const CreateTask = () => {
     const data = new FormData(event.currentTarget);
     const task = data.get("task")?.toString();
     const detail = data.get("detail")?.toString();
+    if (!task || !detail) return;
     let tags = data.get("tag")?.toString().split(",");
     if (!tags || tags[0] === "") tags = [];
     await addDoc(collection(db, "tasks"), {
