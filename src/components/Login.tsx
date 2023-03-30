@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FormEvent } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -18,7 +18,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigation = useNavigate();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get("email")?.toString();
