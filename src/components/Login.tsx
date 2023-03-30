@@ -94,7 +94,7 @@ const Login = () => {
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link href="/signup" variant="body2">
-                {"会員登録はこちら"}
+                {"ユーザー登録はこちら"}
               </Link>
             </Grid>
           </Grid>

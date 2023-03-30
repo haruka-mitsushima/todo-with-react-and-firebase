@@ -13,11 +13,24 @@ const Tags = ({ tag }: { tag: string }) => {
           label={tag}
           size="small"
           variant="outlined"
+          color="error"
         />
       ) : tag === "仕事" ? (
-        <Chip icon={<WorkIcon />} label={tag} size="small" variant="outlined" />
+        <Chip
+          icon={<WorkIcon />}
+          label={tag}
+          size="small"
+          variant="outlined"
+          color="primary"
+        />
       ) : (
-        <Chip icon={<HomeIcon />} label={tag} size="small" variant="outlined" />
+        <Chip
+          icon={<HomeIcon />}
+          label={tag}
+          size="small"
+          variant="outlined"
+          color="warning"
+        />
       )}
     </div>
   );
