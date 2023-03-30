@@ -72,7 +72,6 @@ const CreateTask = () => {
       deleted: false,
       userId: auth.currentUser?.uid,
     });
-    console.log({ task, detail, tags });
     navigate("/");
   };
 
