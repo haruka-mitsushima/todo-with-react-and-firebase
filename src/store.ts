@@ -8,3 +8,6 @@ export const store = configureStore({
     task: taskReducer
   },
 });
+
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>

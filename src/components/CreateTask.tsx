@@ -1,7 +1,6 @@
 import React, { FormEvent, useEffect, useState } from "react";
 import "../styles/CreateTask.css";
-import { addDoc, collection } from "firebase/firestore";
-import { auth, db } from "../firebase";
+import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -15,8 +14,10 @@ import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
 import Chip from "@mui/material/Chip";
 import { Theme, useTheme } from "@mui/material/styles";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { State } from "../type";
+import { fetchCreateTask } from "../features/task/TaskSlice";
+import { AppDispatch } from "../store";
 
 const tags = ["仕事", "家事", "緊急"];
 const ITEM_HEIGHT = 48;
@@ -43,6 +44,7 @@ const CreateTask = () => {
   const theme = useTheme();
   const isAuth = useSelector((state: State) => state.auth);
   const [tagName, setTagName] = useState<string[]>([]);
+  const dispatch = useDispatch<AppDispatch>();
 
   const navigate = useNavigate();
 
@@ -64,14 +66,15 @@ const CreateTask = () => {
     if (!task || !detail) return;
     let tags = data.get("tag")?.toString().split(",");
     if (!tags || tags[0] === "") tags = [];
-    await addDoc(collection(db, "tasks"), {
+    const taskData = {
       task,
       detail,
       tags,
       done: false,
       deleted: false,
       userId: auth.currentUser?.uid,
-    });
+    };
+    await dispatch(fetchCreateTask(taskData));
     navigate("/");
   };
 
@@ -127,6 +130,7 @@ const CreateTask = () => {
               <FormControl sx={{ width: 500 }}>
                 <InputLabel id="tag">タグ</InputLabel>
                 <Select
+                  data-testid="tagList"
                   labelId="tag"
                   id="tag"
                   name="tag"

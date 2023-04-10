@@ -6,7 +6,7 @@ export type Task = {
   id: string
   task: string
   detail: string
-  userId: string
+  userId: string | undefined
   done: boolean
   deleted: boolean
   tags: string[]
