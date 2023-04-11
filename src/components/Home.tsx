@@ -3,31 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { State } from "../type";
 import NotLogin from "./NotLogin";
 import "../styles/Home.css";
-import { collection, query, where, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
-import { setTasks } from "../features/task/TaskSlice";
+import { fetchGetTask } from "../features/task/TaskSlice";
 import TaskBox from "./TaskBox";
 import NoTasks from "./NoTasks";
+import { AppDispatch } from "../store";
 
 const Home = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const { isAuth } = useSelector((state: State) => state.auth);
 
-  const getTasks = async () => {
-    const q = query(
-      collection(db, "tasks"),
-      where("userId", "==", sessionStorage.getItem("uid")),
-      where("deleted", "==", false)
-    );
-    const data = await getDocs(q);
-    const tasks = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-    dispatch(setTasks(tasks));
-  };
   const tasks = useSelector((state: State) => state.task).tasks;
 
   useEffect(() => {
-    getTasks();
-  }, []);
+    dispatch(fetchGetTask());
+  }, [dispatch]);
 
   let taskFlg = true;
 

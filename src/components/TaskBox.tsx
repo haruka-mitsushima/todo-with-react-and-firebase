@@ -7,41 +7,20 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import Tags from "./Tags";
-import {
-  doc,
-  query,
-  collection,
-  where,
-  getDocs,
-  updateDoc,
-} from "firebase/firestore";
-import { db } from "../firebase";
 import { useDispatch } from "react-redux";
-import { setTasks } from "../features/task/TaskSlice";
+import { fetchDeleteTask, fetchUpdateTask } from "../features/task/TaskSlice";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import { AppDispatch } from "../store";
 
 const TaskBox = ({ task }: { task: Task }) => {
-  const dispatch = useDispatch();
-
-  const getTasks = async () => {
-    const q = query(
-      collection(db, "tasks"),
-      where("userId", "==", sessionStorage.getItem("uid")),
-      where("deleted", "==", false)
-    );
-    const data = await getDocs(q);
-    const tasks = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-    dispatch(setTasks(tasks));
-  };
+  const dispatch = useDispatch<AppDispatch>();
 
   const setDone = async (id: string, done: boolean) => {
-    await updateDoc(doc(db, "tasks", id), { done: !done });
-    getTasks();
+    await dispatch(fetchUpdateTask({ id, done }));
   };
 
   const deleteTask = async (id: string) => {
-    await updateDoc(doc(db, "tasks", id), { deleted: true });
-    getTasks();
+    await dispatch(fetchDeleteTask(id));
   };
 
   return (
