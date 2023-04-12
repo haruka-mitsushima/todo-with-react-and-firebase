@@ -5,10 +5,9 @@ import AssignmentIcon from "@mui/icons-material/Assignment";
 import LoginIcon from "@mui/icons-material/Login";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import { auth } from "../firebase";
-import { signOut } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../type";
-import { fetchLogout, logoutAction } from "../features/auth/AuthSlice";
+import { fetchLogout } from "../features/auth/AuthSlice";
 import { AppDispatch } from "../store";
 
 const Navbar = () => {
