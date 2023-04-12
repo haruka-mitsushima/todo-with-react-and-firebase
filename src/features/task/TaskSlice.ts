@@ -45,19 +45,16 @@ const taskSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchCreateTask.fulfilled, (state, action) => {
       return {
-        ...state,
         tasks: [...state.tasks, action.payload]
       }
     })
     builder.addCase(fetchGetTask.fulfilled, (state, action) => {
       return {
-        ...state,
         tasks: action.payload
       }
     })
     builder.addCase(fetchDeleteTask.fulfilled, (state, action) => {
       return {
-        ...state,
         tasks: state.tasks.filter((task) =>
           task.id !== action.payload
         )
@@ -65,7 +62,6 @@ const taskSlice = createSlice({
     })
     builder.addCase(fetchUpdateTask.fulfilled, (state, action) => {
       return {
-        ...state,
         tasks: state.tasks.map((task) =>
           task.id === action.payload ? { ...task, done: !task.done } : task)
       }

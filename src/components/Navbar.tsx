@@ -8,20 +8,18 @@ import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../type";
-import { logoutAction } from "../features/auth/AuthSlice";
+import { fetchLogout, logoutAction } from "../features/auth/AuthSlice";
+import { AppDispatch } from "../store";
 
 const Navbar = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   const { isAuth } = useSelector((state: State) => state.auth);
 
-  const logout = () => {
-    signOut(auth).then(() => {
-      sessionStorage.clear();
-      dispatch(logoutAction());
-      navigate("/");
-    });
+  const logout = async () => {
+    await dispatch(fetchLogout(auth));
+    navigate("/");
   };
 
   return (

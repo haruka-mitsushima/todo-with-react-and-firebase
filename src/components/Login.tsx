@@ -8,30 +8,28 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { auth } from "../firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "../styles/Login.css";
 import { useDispatch } from "react-redux";
-import { login } from "../features/auth/AuthSlice";
+import { fetchLogin } from "../features/auth/AuthSlice";
+import { AppDispatch } from "../store";
 
 const Login = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigation = useNavigate();
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get("email")?.toString();
     const password = data.get("password")?.toString();
     if (!email || !password) return;
-    signInWithEmailAndPassword(auth, email, password).then(() => {
-      sessionStorage.setItem("isAuth", "true");
-      if (auth.currentUser?.uid.toString()) {
-        sessionStorage.setItem("uid", auth.currentUser?.uid);
-      }
-      dispatch(login());
+    await dispatch(fetchLogin({ auth, email, password }));
+    if (sessionStorage.getItem("isAuth") === "true") {
       navigation("/");
-    });
+    } else {
+      return;
+    }
   };
 
   return (
